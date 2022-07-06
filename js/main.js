@@ -44,9 +44,10 @@ const counterAttempts = () => {
   }
 };
 
-function handleClick(event) {
+const handleClick = (event) => {
+  event.preventDefault();
   generatorTips(generatedNumber);
   counterAttempts();
-}
+};
 
 btn.addEventListener("click", handleClick);
