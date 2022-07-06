@@ -8,19 +8,19 @@ const attempts = document.querySelector(".js-attempts");
 const valueNumber = parseInt(number.value);
 let counter = 0;
 
-function getRandomNumber(max) {
+const getRandomNumber = (max) => {
   return Math.ceil(Math.random() * max);
-}
+};
 
-const generatedNumber = generatorNumber(100);
-
-function generatorNumber() {
+const generatorNumber = () => {
   const randomNumber = getRandomNumber(100);
   console.log(`Mi número aleatorio es ${randomNumber}`);
   return randomNumber;
-}
+};
 
-function generatorTips(generatedNumber) {
+const generatedNumber = generatorNumber(100);
+
+const generatorTips = (generatedNumber) => {
   const valueNumber = parseInt(number.value);
   if (valueNumber > generatedNumber) {
     tip.innerHTML = "Demasiado alto.";
@@ -34,14 +34,15 @@ function generatorTips(generatedNumber) {
   if (valueNumber > 100 || valueNumber < 1) {
     tip.innerHTML = "El número debe estar entre 1 y 100.";
   }
-}
+};
 
-function counterAttempts(generatedNumber) {
-  if (generatedNumber !== "") {
-    let sumCounter = counter++ + 1;
-    attempts.innerHTML = `Número de intentos: ${sumCounter}`;
+const counterAttempts = () => {
+  const valueNumber = number.value;
+  if (valueNumber !== "") {
+    counter++;
+    attempts.innerHTML = `Número de intentos: ${counter}`;
   }
-}
+};
 
 function handleClick(event) {
   generatorTips(generatedNumber);
