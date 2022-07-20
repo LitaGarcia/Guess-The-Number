@@ -1,53 +1,54 @@
-"use strict";
+'use strict';
 
-const number = document.querySelector(".js-number");
-const button = document.querySelector(".js-number");
-const tip = document.querySelector(".js-tip");
-const btn = document.querySelector(".js-btn");
-const attempts = document.querySelector(".js-attempts");
-const valueNumber = parseInt(number.value);
+const numberInput = document.querySelector('.js-number');
+const tipParagraph = document.querySelector('.js-tip');
+const btnPlay = document.querySelector('.js-btn');
+const attemptsParagraph = document.querySelector('.js-attempts');
+const valueNumber = parseInt(numberInput.value);
 let counter = 0;
 
 const getRandomNumber = (max) => {
   return Math.ceil(Math.random() * max);
 };
 
-const generatorNumber = () => {
+const generateNumber = () => {
   const randomNumber = getRandomNumber(100);
   console.log(`Mi número aleatorio es ${randomNumber}`);
   return randomNumber;
 };
 
-const generatedNumber = generatorNumber(100);
-
-const generatorTips = (generatedNumber) => {
-  const valueNumber = parseInt(number.value);
+const generatedNumber = generateNumber(100);
+const renderTip = (message) => {
+  tipParagraph.innerHTML = message;
+};
+const generateTips = (generatedNumber) => {
+  const valueNumber = parseInt(numberInput.value);
   if (valueNumber > generatedNumber) {
-    tip.innerHTML = "Demasiado alto.";
+    renderTip('Demasiado alto.');
   }
   if (valueNumber < generatedNumber) {
-    tip.innerHTML = "Demasiado bajo.";
+    renderTip('Demasiado bajo.');
   }
   if (valueNumber === generatedNumber) {
-    tip.innerHTML = "Has ganado campeona!!!!";
+    renderTip('Has ganado campeona!!!!');
   }
   if (valueNumber > 100 || valueNumber < 1) {
-    tip.innerHTML = "El número debe estar entre 1 y 100.";
+    renderTip('El número debe estar entre 1 y 100.');
   }
 };
 
-const counterAttempts = () => {
-  const valueNumber = number.value;
-  if (valueNumber !== "") {
+const countAttempts = () => {
+  const valueNumber = numberInput.value;
+  if (valueNumber !== '') {
     counter++;
-    attempts.innerHTML = `Número de intentos: ${counter}`;
+    attemptsParagraph.innerHTML = `Número de intentos: ${counter}`;
   }
 };
 
 const handleClick = (event) => {
   event.preventDefault();
-  generatorTips(generatedNumber);
-  counterAttempts();
+  generateTips(generatedNumber);
+  countAttempts();
 };
 
-btn.addEventListener("click", handleClick);
+btnPlay.addEventListener('click', handleClick);
